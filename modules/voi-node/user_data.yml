@@ -6,7 +6,7 @@ users:
     sudo: ['ALL=(ALL) NOPASSWD:ALL']
     groups: sudo
     shell: /bin/bash
-    lock_passwd: false
+    lock_passwd: true
 
 # update & install necessary packages
 package_update: true
@@ -15,13 +15,12 @@ packages:
 #  - fail2ban
   - openssh-server
 
+write_files:
+  owner: voi:voi
+  path: /home/voi/.ssh/authorized_keys
+  permissions: '0600'
+
 bootcmd:
-  # copy the ssh authorized_keys that were added to root at creation
-  - mkdir -p /home/voi/.ssh
-  - cp /root/.ssh/authorized_keys /home/voi/.ssh/authorized_keys
-  - chown -R voi:voi /home/voi/.ssh
-  - chmod 700 /home/voi/.ssh
-  - chmod 600 /home/voi/.ssh/authorized_keys
   # update the ssh config to use password-less login and only allow the voi user
   - |
     cat <<EOF >> /etc/ssh/sshd_config
@@ -37,9 +36,12 @@ bootcmd:
     AuthorizedKeysFile .ssh/authorized_keys
     AllowUsers voi
     EOF
-  - systemctl restart sshd
 
 runcmd:
+  # copy the ssh authorized_keys that were added to root at creation
+  - cp /root/.ssh/authorized_keys /home/voi/.ssh/authorized_keys
+  - chmod 700 /home/voi/.ssh
+  - systemctl restart sshd
   # setup fail2ban
 #  - systemctl enable fail2ban
 #  - cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
