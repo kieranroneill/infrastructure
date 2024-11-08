@@ -30,19 +30,19 @@ bootcmd:
   - chmod 600 /home/voi/.ssh/authorized_keys
   # update the ssh config to use passwordless login and only allow the voi user
   - |
-  cat <<EOF >> /etc/ssh/sshd_config
-  X11Forwarding no
-  AllowAgentForwarding no
-  AllowTcpForwarding no
-  PermitRootLogin no
-  PasswordAuthentication no
-  PubkeyAuthentication yes
-  MaxAuthTries 2
-  ClientAliveInterval 300
-  ClientAliveCountMax 1
-  AuthorizedKeysFile .ssh/authorized_keys
-  AllowUsers voi
-  EOF
+    cat <<EOF >> /etc/ssh/sshd_config
+    X11Forwarding no
+    AllowAgentForwarding no
+    AllowTcpForwarding no
+    PermitRootLogin no
+    PasswordAuthentication no
+    PubkeyAuthentication yes
+    MaxAuthTries 2
+    ClientAliveInterval 300
+    ClientAliveCountMax 1
+    AuthorizedKeysFile .ssh/authorized_keys
+    AllowUsers voi
+    EOF
   - systemctl restart sshd
 
 runcmd:
