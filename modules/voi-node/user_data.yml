@@ -5,6 +5,7 @@ users:
     groups: sudo
     shell: /bin/bash
     lock_passwd: true
+    passwd: ""
 
 # update & install necessary packages
 package_update: true
@@ -21,18 +22,18 @@ write_files:
     permissions: '0600'
   - path: /etc/ssh/sshd_config
     content: |
-      PermitRootLogin no
-      AllowUsers voi
-      ClientAliveInterval 300
-      ClientAliveCountMax 1
-      MaxAuthTries 2
-      AllowTcpForwarding no
-      X11Forwarding no
       AllowAgentForwarding no
+      AllowTcpForwarding no
+      AllowUsers voi
       AuthorizedKeysFile .ssh/authorized_keys
-      PasswordAuthentication no
-      PubkeyAuthentication yes
+      ClientAliveCountMax 1
+      ClientAliveInterval 300
       KbdInteractiveAuthentication no
+      MaxAuthTries 2
+      PasswordAuthentication no
+      PermitRootLogin no
+      PubkeyAuthentication yes
+      X11Forwarding no
   - path: /etc/fail2ban/jail.local
     content: |
       [DEFAULT]
