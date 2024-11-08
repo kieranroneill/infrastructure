@@ -1,3 +1,7 @@
-output "urn" {
-  value = digitalocean_domain.domain.urn
+output "id" {
+  value = hcloud_server.node.id
+}
+
+output "name" {
+  value = hcloud_server.node.name
 }
