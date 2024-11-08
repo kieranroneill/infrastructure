@@ -16,10 +16,11 @@
   </a>
 </p>
 
-### Table of contents
+### Table Of Contents
 
 * [1. Introduction](#-1-introduction)
-* [2. Requirements](#-2-requirements)
+* [2. Development](#-2-development)
+  - [2.1. Requirements](#21-requirements)
 * [3. Miscellaneous](#-3-miscellaneous)
   - [3.1. Useful Commands](#31-useful-commands)
 * [4. How To Contribute](#-4-how-to-contribute)
@@ -29,9 +30,13 @@
 
 All elements of the infrastructure is to be written in code, using Terraform, and put under source control. The main objective of implementing infrastructure as code (IaC) for the platform is the need to easily spin up an entire environment and for traceability; it’s important to know what changes have been made, and why.
 
-## 📋 2. Requirements
+## 🛠 2. Development
+
+### 2.1. Requirements
 
 * Terraform CLI [Terraform CLI 0.14+][terraform]
+* Install [Node v20.18.0+][node]
+* Install npm v8+
 
 <sup>[Back to top ^][table-of-contents]</sup>
 
@@ -62,6 +67,7 @@ Please refer to the [LICENSE][license] file.
 <!-- Links -->
 [contribute]: ./CONTRIBUTING.md
 [license]: ./LICENSE
+[node]: https://nodejs.org/en/
 [terraform]: https://www.terraform.io/downloads.html
 [table-of-contents]: #table-of-contents
 
