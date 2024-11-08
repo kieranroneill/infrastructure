@@ -16,7 +16,6 @@ packages:
 write_files:
   - path: /etc/ssh/sshd_config
     content: |
-      Port 22
       PermitRootLogin no
       AllowUsers voi
       ClientAliveInterval 300
@@ -38,7 +37,7 @@ write_files:
 
       [sshd]
       enabled = true
-      port = 22
+      port = ssh
       logpath = %(sshd_log)s
 
 runcmd:
