@@ -1,11 +1,12 @@
 #cloud-config
+debug: true
+
 users:
   - name: voi
     sudo: ['ALL=(ALL) NOPASSWD:ALL']
     groups: sudo
     shell: /bin/bash
     lock_passwd: false
-    passwd: ""
 
 # update & install necessary packages
 package_update: true
@@ -21,25 +22,30 @@ write_files:
     owner: voi:voi
     permissions: '0600'
 
-runcmd:
+bootcmd:
   # copy the ssh authorized_keys that were added to root at creation
   - mkdir -p /home/voi/.ssh
   - cp /root/.ssh/authorized_keys /home/voi/.ssh/authorized_keys
   - chown -R voi:voi /home/voi/.ssh
   - chmod 600 /home/voi/.ssh/authorized_keys
   # update the ssh config to use passwordless login and only allow the voi user
-  - sed -i -e '/^#\?X11Forwarding/s/^#\?X11Forwarding.*/X11Forwarding no/' /etc/ssh/sshd_config
-  - sed -i -e '/^#\?AllowAgentForwarding/s/^#\?AllowAgentForwarding.*/AllowAgentForwarding no/' /etc/ssh/sshd_config
-  - sed -i -e '/^#\?AllowTcpForwarding/s/^#\?AllowTcpForwarding.*/AllowTcpForwarding no/' /etc/ssh/sshd_config
-  - sed -i -e '/^#\?PermitRootLogin/s/^#\?PermitRootLogin.*/PermitRootLogin no/' /etc/ssh/sshd_config
-  - sed -i -e '/^#\?PasswordAuthentication/s/^#\?PasswordAuthentication.*/PasswordAuthentication no/' /etc/ssh/sshd_config
-  - sed -i -e '/^#\?PubkeyAuthentication/s/^#\?PubkeyAuthentication.*/PubkeyAuthentication yes/' /etc/ssh/sshd_config
-  - sed -i -e '/^#\?MaxAuthTries/s/^#\?MaxAuthTries.*/MaxAuthTries 2/' /etc/ssh/sshd_config
-  - sed -i -e '/^#\?ClientAliveInterval/s/^#\?ClientAliveInterval.*/ClientAliveInterval 300/' /etc/ssh/sshd_config
-  - sed -i -e '/^#\?ClientAliveCountMax/s/^#\?ClientAliveCountMax.*/ClientAliveCountMax 1/' /etc/ssh/sshd_config
-  - sed -i -e '/^#\?AuthorizedKeysFile/s/^#\?AuthorizedKeysFile.*/AuthorizedKeysFile .ssh\/authorized_keys/' /etc/ssh/sshd_config
-  - sed -i '$a AllowUsers voi' /etc/ssh/sshd_config
-  - systemctl restart ssh
+  - |
+  cat <<EOF >> /etc/ssh/sshd_config
+  X11Forwarding no
+  AllowAgentForwarding no
+  AllowTcpForwarding no
+  PermitRootLogin no
+  PasswordAuthentication no
+  PubkeyAuthentication yes
+  MaxAuthTries 2
+  ClientAliveInterval 300
+  ClientAliveCountMax 1
+  AuthorizedKeysFile .ssh/authorized_keys
+  AllowUsers voi
+  EOF
+  - systemctl restart sshd
+
+runcmd:
   # setup fail2ban
 #  - systemctl enable fail2ban
 #  - cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
