@@ -21,6 +21,7 @@
 * [1. Introduction](#-1-introduction)
 * [2. Development](#-2-development)
   - [2.1. Requirements](#21-requirements)
+  - [2.2. Installation](#22-installation)
 * [3. Miscellaneous](#-3-miscellaneous)
   - [3.1. Useful Commands](#31-useful-commands)
 * [4. How To Contribute](#-4-how-to-contribute)
@@ -35,8 +36,20 @@ All elements of the infrastructure is to be written in code, using Terraform, an
 ### 2.1. Requirements
 
 * Terraform CLI [Terraform CLI 0.14+][terraform]
-* Install [Node v20.18.0+][node]
-* Install npm v8+
+* Install [Node v20.18.0+][node] (optional)
+* Install npm v8+ (optional)
+
+<sup>[Back to top ^][table-of-contents]</sup>
+
+### 2.2. Installation
+
+1. Install the dependencies using:
+
+```shell
+npm install
+```
+
+> ⚠️ **NOTE:** While not necessary, this will install the pre-commit hooks: commitlint and Terraform formatting.
 
 <sup>[Back to top ^][table-of-contents]</sup>
 
