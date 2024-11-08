@@ -14,8 +14,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20.18.0'
-      - name: "🔧 Setup"
-        uses: ./.github/actions/use-dependencies
       - name: "📥 Get PR Title"
         id: get_pr_title
         uses: actions/github-script@v7
