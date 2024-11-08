@@ -15,20 +15,14 @@ packages:
 #  - fail2ban
   - openssh-server
 
-write_files:
-  # copy the ssh key that was added at creation
-  - path: /home/voi/.ssh/authorized_keys
-    content: $(cat /root/.ssh/authorized_keys)
-    owner: voi:voi
-    permissions: '0600'
-
 bootcmd:
   # copy the ssh authorized_keys that were added to root at creation
   - mkdir -p /home/voi/.ssh
   - cp /root/.ssh/authorized_keys /home/voi/.ssh/authorized_keys
   - chown -R voi:voi /home/voi/.ssh
+  - chmod 700 /home/voi/.ssh
   - chmod 600 /home/voi/.ssh/authorized_keys
-  # update the ssh config to use passwordless login and only allow the voi user
+  # update the ssh config to use password-less login and only allow the voi user
   - |
     cat <<EOF >> /etc/ssh/sshd_config
     X11Forwarding no
