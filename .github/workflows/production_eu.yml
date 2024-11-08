@@ -1,0 +1,28 @@
+name: "Production - EU"
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'workspaces/production-eu/**'
+      - 'modules/voi-node/**'
+  pull_request:
+    paths:
+      - 'workspaces/production-eu/**'
+      - 'modules/voi-node/**'
+
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+
+jobs:
+  validate_plan_and_apply:
+    name: "Validate, Plan and Apply"
+    uses: ./.github/workflows/validate_plan_and_apply.yml
+    with:
+      workspace_name: "production-eu"
+    secrets:
+      TERRAFORM_API_TOKEN: ${{ secrets.TERRAFORM_API_TOKEN }}

@@ -11,8 +11,8 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/kieranoneill/infrastructure/actions/workflows/boundary.yml">
-    <img src="https://github.com/kieranoneill/infrastructure/actions/workflows/boundary.yml/badge.svg?branch=main" alt="Boundary" />
+  <a href="https://github.com/kieranroneill/infrastructure/actions/workflows/boundary.yml" style="text-decoration: none">
+    <img src="https://github.com/kieranroneill/infrastructure/actions/workflows/boundary.yml/badge.svg?branch=main" alt="Boundary" />
   </a>
 </p>
 
