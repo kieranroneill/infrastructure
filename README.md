@@ -11,10 +11,10 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/kieranroneill/infrastructure/actions/workflows/boundary.yml" style="text-decoration: none">
+  <a href="https://github.com/kieranroneill/infrastructure/actions/workflows/boundary.yml">
     <img src="https://github.com/kieranroneill/infrastructure/actions/workflows/boundary.yml/badge.svg?branch=main" alt="Boundary" />
   </a>
-  <a href="https://github.com/kieranroneill/infrastructure/actions/workflows/production_eu.yml" style="text-decoration: none">
+  <a href="https://github.com/kieranroneill/infrastructure/actions/workflows/production_eu.yml">
     <img src="https://github.com/kieranroneill/infrastructure/actions/workflows/production_eu.yml/badge.svg?branch=main" alt="Production - EU" />
   </a>
 </p>
