@@ -12,7 +12,7 @@ users:
 package_update: true
 package_upgrade: true
 packages:
-  - fail2ban
+#  - fail2ban
   - openssh-server
 
 write_files:
