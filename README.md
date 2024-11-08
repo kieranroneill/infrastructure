@@ -14,6 +14,9 @@
   <a href="https://github.com/kieranroneill/infrastructure/actions/workflows/boundary.yml" style="text-decoration: none">
     <img src="https://github.com/kieranroneill/infrastructure/actions/workflows/boundary.yml/badge.svg?branch=main" alt="Boundary" />
   </a>
+  <a href="https://github.com/kieranroneill/infrastructure/actions/workflows/production_eu.yml" style="text-decoration: none">
+    <img src="https://github.com/kieranroneill/infrastructure/actions/workflows/production_eu.yml/badge.svg?branch=main" alt="Production - EU" />
+  </a>
 </p>
 
 ### Table Of Contents
