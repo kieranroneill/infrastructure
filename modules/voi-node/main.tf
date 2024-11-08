@@ -16,5 +16,5 @@ resource "hcloud_server" "node" {
   }
   server_type = var.server_type
   ssh_keys    = var.ssh_key_ids
-  user_data   = file("user_data.yml")
+  user_data   = file("${path.module}/user_data.yml")
 }
