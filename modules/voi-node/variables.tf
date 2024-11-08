@@ -12,6 +12,11 @@ variable "hetzner_api_token" {
   type        = string
 }
 
+variable "ssh_key_id" {
+  description = "An SSH key ID to access the server."
+  type        = string
+}
+
 #####
 # optional
 #####
@@ -32,10 +37,4 @@ variable "server_type" {
   default     = "cx42"
   description = "The Hetzner server type. Defaults to 'cx42'."
   type        = string
-}
-
-variable "ssh_key_ids" {
-  default     = []
-  description = "A list of SSH key IDs to add to the server."
-  type        = list(string)
 }

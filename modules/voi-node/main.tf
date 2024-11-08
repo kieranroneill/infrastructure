@@ -1,3 +1,7 @@
+data "hcloud_ssh_key" "ssh_key" {
+  id = var.ssh_key_id
+}
+
 #####
 # server
 #####
@@ -15,6 +19,8 @@ resource "hcloud_server" "node" {
     ipv6_enabled = true
   }
   server_type = var.server_type
-  ssh_keys    = var.ssh_key_ids
-  user_data   = file("${path.module}/user_data.yml")
+  ssh_keys    = [data.hcloud_ssh_key.ssh_key.id]
+  user_data = templatefile("${path.module}/user_data.yml", {
+    ssh_public_key = data.hcloud_ssh_key.ssh_key.public_key
+  })
 }
